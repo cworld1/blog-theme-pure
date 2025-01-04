@@ -5,12 +5,16 @@ import { readFileSync } from 'fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 
+import checkFunc from './check.mjs'
 import minimist from './libs/minimist.cjs'
 import newFunc from './new.mjs'
 
 const args = minimist(process.argv.slice(2))
 
 switch (args._[0]) {
+  case 'check':
+    await checkFunc()
+    break
   case 'new':
     const newArgs = process.argv.slice(3)
     newFunc(newArgs)

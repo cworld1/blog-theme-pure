@@ -12,14 +12,12 @@ A simple, fast and powerful blog theme built by Astro.
 ![image](./.github/assets/header.webp)
 ![image](./.github/assets/body.webp)
 
-> [!CAUTION]
-> We are currently on develop about upgrading to Astro v5 and developing npm package method. Known issues for new version:
+> [!WARNING]
+> Theme template v4.x is based on Astro v5 & independent theme NPM package method. Stabler experience is currently on [v3.1.4](https://github.com/cworld1/astro-theme-pure/tree/v3.1.4). Known issues:
 >
 > 1. Cannot pack sitemap and pagefind resources on Vercel ([need upstream fix](https://github.com/withastro/astro/issues/12663) & temp fixed)
 > 2. Header & customize options is still under development (template exposed still)
-> 3. rehype headings link works not as expected in module linking method (no effect)
->
-> Stabler experience is currently on [v3.1.4](https://github.com/cworld1/astro-theme-pure/tree/v3.1.4).
+> 3. Rehype headings link works not as expected in module linking method (no effect)
 
 ## Introduction
 
@@ -52,7 +50,7 @@ Theme includes a lot of components, which can not only be used in the theme, but
 
 ## Documentation
 
-[Docs](https://astro-pure.js.org/docs/list) | [Showcase](https://github.com/cworld1/astro-theme-pure/issues/10)
+[Docs](https://astro-pure.js.org/docs) | [Showcase](https://github.com/cworld1/astro-theme-pure/issues/10)
 
 ## Package
 

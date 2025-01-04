@@ -9,20 +9,20 @@ export const FriendLinksSchema = () =>
           content: z.string()
         })
       ),
-      applyTip: z.object({
-        name: z.string(),
-        desc: z.string(),
-        url: z.string(),
-        avatar: z.string()
-      })
+      applyTip: z.array(
+        z.object({
+          name: z.string(),
+          val: z.string()
+        })
+      )
     })
     .default({
       logbook: [],
-      applyTip: {
-        name: 'Astro Pure',
-        desc: 'Stay hungry, stay foolish.',
-        url: 'https://astro-pure.js.org',
-        avatar: 'https://astro-pure.js.org/favicon/favicon.ico'
-      }
+      applyTip: [
+        { name: 'Name', val: 'Astro Pure' },
+        { name: 'Desc', val: 'Null' },
+        { name: 'Link', val: 'https://astro-pure.js.org/' },
+        { name: 'Avatar', val: 'https://astro-pure.js.org/favicon/favicon.ico' }
+      ]
     })
     .describe('Friend links for your website.')

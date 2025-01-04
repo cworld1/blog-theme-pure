@@ -1,11 +1,8 @@
 ---
 import type { MarkdownHeading } from 'astro'
 
-import { BackToTop, PageInfo, TOC } from 'astro-pure/components/pages'
-import { Button } from 'astro-pure/user'
-import { cn } from 'astro-pure/utils'
-import PageLayout from '@/layouts/BaseLayout.astro'
-import { integ } from '@/site-config'
+import { PageInfo, TOC } from 'astro-pure/components/pages'
+import PageLayout from '@/layouts/ContentLayout.astro'
 
 interface Props {
   title: string
@@ -22,48 +19,26 @@ const { title, headings, info, ...props } = Astro.props
 ---
 
 <PageLayout meta={{ title }} {...props}>
-  <Button title='Back' href='/' style='back' />
-  <main class='mt-6 items-start gap-x-10 md:flex'>
+  {headings?.length && <TOC headings={headings} slot='sidebar' />}
+
+  <Fragment slot='header'>
+    <h1 class='text-2xl font-medium sm:mb-2 sm:text-3xl'>
+      {title}
+    </h1>
     {
-      !!headings?.length && (
-        <TOC
-          class='animate top-24 z-10 min-w-48 basis-60 max-md:hidden md:sticky md:order-2'
-          {headings}
+      info && (
+        <PageInfo
+          path={typeof info === 'string' ? info : info.slug}
+          hideComment={typeof info === 'object' && info.hideComment ? info.hideComment : false}
+          class='italic'
         />
       )
     }
+  </Fragment>
 
-    <article class='min-w-0 grow'>
-      <div id='content-header' class='animate'>
-        <h1 class='text-2xl font-medium sm:mb-2 sm:text-3xl'>
-          {title}
-        </h1>
-        {
-          info && (
-            <PageInfo
-              path={typeof info === 'string' ? info : info.slug}
-              hideComment={typeof info === 'object' && info.hideComment ? info.hideComment : false}
-              class='italic'
-            />
-          )
-        }
-      </div>
-      <div
-        id='content'
-        class={cn('max-w-none animate mt-8 md:min-w-[45ch]', integ.typography.class)}
-      >
-        <slot />
-      </div>
-    </article>
-  </main>
+  <slot />
 
-  <div class='mt-6 items-start gap-x-10 md:flex'>
-    <div class='mt-8 flex-1 text-muted-foreground md:min-w-[50ch]'>
-      <slot name='bottom' />
-    </div>
-    <div class='min-w-48 basis-60'>
-      <slot name='bottom-sidebar' />
-    </div>
-  </div>
-  <BackToTop header='content-header' content='content' />
+  <slot name='bottom' slot='bottom' />
+
+  <slot name='bottom-sidebar' slot='bottom-sidebar' />
 </PageLayout>

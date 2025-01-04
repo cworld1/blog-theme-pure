@@ -1,6 +1,4 @@
 ---
-layout: '@/layouts/DocsLayout.astro'
-
 title: 'Authoring Content'
 description: 'Astro is a perfect choice for your content-focused site: blogs, marketing sites, portfolios, and more!'
 ---
@@ -47,6 +45,17 @@ This is a paragraph.
 ```
 
 If you have a lot of assets, you can create a folder for title like `src/content/blog/first-article/` and put all your assets in there. Of course, your content should be renamed to `index.md` or `index.mdx` and also be contained in this folder.
+
+<Aside type='tip'>
+If you want to use remote image for `heroImage`, please add `inferSize: true` or specificed `width` and `height` to the object `heroImage`. Example:
+```yaml
+heroImage:
+  { src: 'https://img.tukuppt.com/ad_preview/00/15/09/5e715a320b68e.jpg!/fw/980', inferSize: true }
+# Or specificed width and height
+heroImage:
+  { src: 'https://img.tukuppt.com/ad_preview/00/15/09/5e715a320b68e.jpg!/fw/980', width: 980, height: 551 }
+```
+</Aside>
 
 Too complex? Simple example just need these:
 

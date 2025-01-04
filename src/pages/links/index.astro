@@ -14,7 +14,7 @@ const headings = [
 ]
 
 const { friends } = links
-const linksConfig = config.integ.links
+const linksConf = config.integ.links
 ---
 
 <PageLayout title='Links' {headings} info='/links'>
@@ -25,19 +25,28 @@ const linksConfig = config.integ.links
     <FriendList list={friends[1]} />
   </Collapse>
   <Collapse title='Link History Book'>
-    <Timeline events={linksConfig.logbook} />
+    <Timeline events={linksConf.logbook} />
   </Collapse>
   <h2 id='special-links'>Special Links</h2>
   <FriendList list={friends[2]} />
 
   <!-- apply-links -->
   <h2 id='apply-links'>Apply Links</h2>
-  <p>本站信息如下：</p>
-  <blockquote class='not-prose break-words border-s-4 ps-4'>
-    <p>名称：<code>{linksConfig.applyTip.name}</code></p>
-    <p>简介：<code>{linksConfig.applyTip.desc}</code></p>
-    <p>链接：<code>{linksConfig.applyTip.url}</code></p>
-    <p>图标：<code>{linksConfig.applyTip.avatar}</code></p>
+  <p>本站信息如下（点击快速复制）：</p>
+  <blockquote class='not-prose grid grid-cols-[auto_1fr] gap-x-2 break-words border-s-4 ps-4'>
+    {
+      linksConf.applyTip.map(({ name, val }) => {
+        const script = `navigator.clipboard.writeText('${val}');document.dispatchEvent(new CustomEvent('toast',{detail:{message:'Copied "${val}" to clipboard!'}}))`
+        return (
+          <>
+            <span class='text-end'>{name}:</span>
+            <samp class='cursor-pointer' onclick={script}>
+              {val}
+            </samp>
+          </>
+        )
+      })
+    }
   </blockquote>
 
   <p>

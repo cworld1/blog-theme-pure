@@ -1,6 +1,4 @@
 ---
-layout: '@/layouts/DocsLayout.astro'
-
 title: 'Update Theme'
 description: 'Update astro theme pure to the latest version'
 ---
@@ -13,6 +11,23 @@ import { Aside } from 'astro-pure/user'
 </Aside>
 
 ## Breaking Changes
+
+- Considering move tools icons to new path like `src/assets/tools/`, this may help user know which ones are relevant to tools.
+- Change links `applyTip` to custom array style:
+
+  ```ts title="src/site.config.ts"
+  export const integ: IntegrationUserConfig = {
+    links: {
+      applyTip: [
+        { name: 'Name', val: theme.title }, // [!code highlight:4]
+        { name: 'Desc', val: theme.description || 'Null' },
+        { name: 'Link', val: 'https://astro-pure.js.org/' },
+        { name: 'Avatar', val: 'https://astro-pure.js.org/favicon/favicon.ico' }
+        // You can also add more fields
+      ]
+    }
+  }
+  ```
 
 ### v4.0.1-beta
 
@@ -35,6 +50,8 @@ import { Aside } from 'astro-pure/user'
       }
     ]},
   />
+
+- This change import a new component `Svg`. See [User Components #Svg Loader](/docs/integrations/components#svg-loader) for usage.
 
 ### v4.0.0-alpha
 
@@ -137,37 +154,45 @@ def: include
 ## To exclude some of the folders that match the d: pattern, specify d!:
 ## (Inline comments begin with " ##" and extend to the end of the line)
 
-## Basic front-end files
-d: \\\.git$ ## git directory
+### Front-end files ###
+d: \\\.git$
 d: \\node_modules$
 
-## Astro cache
+# Astro cache
 d: \\\.vercel
 d: \\\.astro
 
-### Astro theme pure ###
-d: ^\\public\\favicon$
-f: ^public\\links\.json$
-
-d: ^\\scripts-web$
-
-d: ^\\src\\assets\\projects$
-f: ^src\\assets\\avatar\.png$
-d: ^\\src\\icons$
-d: ^\\src\\content\\post$
-d: ^\\src\\pages\\docs$
-f: ^src\\pages\\terms\\.*\.md$
-
-### Theme Extentions ###
-f: ^src\\assets\\not-by-ai-badge\.svg$
-f: ^src\\assets\\styles\\fc\.css$
-f: ^src\\components\\about\\Umami\.astro$
-
-## Documents & project configs
-f: ^bun\.lockb$
+### Theme dev ###
+d: ^\\packages$
+d: ^\\preset$
+d: ^\\test$
 f: ^LICENSE$
 f: ^README\.md$
 f: ^README-zh-CN\.md$
+f: ^CODE_OF_CONDUCT\.md$
+
+# Project
+f: ^bun\.lockb$
 f: \.code-workspace$
 f: ^ignore\.md$
+
+### Astro theme pure ###
+# Static
+d: ^\\public\\favicon$
+f: ^public\\links\.json$
+f: ^public\\images\\social-card\.png$
+
+# Assets
+f: ^src\\assets\\avatar\.png$
+d: ^\\src\\assets\\projects$
+d: ^\\src\\assets\\tools$
+
+# Content
+d: ^\\src\\content\\blog$
+d: ^\\src\\content\\docs$
+d: ^\\src\\pages\\docs$
+f: ^src\\pages\\terms\\.*\.md$
+
+### Blog ###
+# Your own files
 ```
