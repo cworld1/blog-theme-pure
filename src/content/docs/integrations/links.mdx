@@ -1,6 +1,4 @@
 ---
-layout: '@/layouts/DocsLayout.astro'
-
 title: 'Friend Links'
 description: 'Configurations for friend links'
 ---
@@ -21,10 +19,10 @@ export const integ: IntegrationUserConfig = {
     ],
     // Yourself link info
     applyTip: {
-      name: siteConfig.title,
-      desc: siteConfig.description,
-      url: siteConfig.site,
-      avatar: siteConfig.site + 'favicon/favicon.ico'
+      name: theme.title,
+      desc: theme.description || 'Null',
+      url: 'https://astro-pure.js.org/',
+      avatar: 'https://astro-pure.js.org/favicon/favicon.ico'
     }
   },
 }

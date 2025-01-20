@@ -1,11 +1,18 @@
 ---
-layout: '@/layouts/DocsLayout.astro'
-
 title: 'Deployment'
 description: 'Comment system for pages at the bottom'
 ---
 
 import { Steps } from 'astro-pure/user'
+
+## Package Mode
+
+This theme which >= v4.0.0 has integrated NPM package mode. Recommended way is remove local package file, and install the theme integration from NPM. If there's some reason you want to change the package content, you should link local package to your theme template. A `bun` method is integrated. You should:
+
+1. Add environment variable `BUN_LINK_PKG=true`.
+2. Run `bun pure check` to link the package automatically.
+
+This method can also work on Deployment for other platforms like 'Vercel'. All you need is to add the environment variable to build options on your platform control settings. The build command `astro-pure check && astro check && astro build` will automatically link the package.
 
 ## Deployment Mode
 

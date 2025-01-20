@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process'
-import { dirname, relative } from 'node:path'
+import path, { dirname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 // Astro
 import type { AstroIntegration, RehypePlugins, RemarkPlugins } from 'astro'
@@ -25,7 +25,7 @@ export default function AstroPureIntegration(opts: UserInputConfig): AstroIntegr
         let userConfig = parseWithFriendlyErrors(
           UserConfigSchema,
           opts,
-          'Invalid config passed to starlight integration'
+          'Invalid config passed to astro-pure integration'
         )
 
         // Add built-in integrations only if they are not already added by the user through the

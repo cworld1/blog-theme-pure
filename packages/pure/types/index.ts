@@ -2,7 +2,7 @@ import { Icons } from '../libs/icons'
 
 export type { IntegrationUserConfig } from './integrations-config'
 export type { ThemeUserConfig } from './theme-config'
-export type { UserInputConfig as Config } from './user-config'
+export type { UserInputConfig as Config, UserConfig as ConfigOutput } from './user-config'
 
 export interface SiteMeta {
   title: string

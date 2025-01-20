@@ -33,7 +33,7 @@ export const theme: ThemeUserConfig = {
   prerender: true,
   npmCDN: 'https://cdn.jsdelivr.net/npm',
 
-  // in test
+  // still in test
   head: [
     /* Telegram channel */
     // {
@@ -48,7 +48,7 @@ export const theme: ThemeUserConfig = {
   header: {
     menu: [
       { title: 'Blog', link: '/blog' },
-      { title: 'Docs', link: '/docs/list' },
+      { title: 'Docs', link: '/docs' },
       { title: 'Projects', link: '/projects' },
       { title: 'Links', link: '/links' },
       { title: 'About', link: '/about' }
@@ -65,7 +65,7 @@ export const theme: ThemeUserConfig = {
     /** Enable displaying a “Astro & Pure theme powered” link in your site’s footer. */
     credits: true,
     /** Optional details about the social media accounts for this site. */
-    social: { github: 'https://astro.build/chat' }
+    social: { github: 'https://github.com/cworld1/astro-theme-pure' }
   },
 
   content: {
@@ -79,23 +79,27 @@ export const theme: ThemeUserConfig = {
 }
 
 export const integ: IntegrationUserConfig = {
+  // Links menagement
+  // See: https://astro-pure.js.org/docs/integrations/links
   links: {
+    // Friend logbook
     logbook: [
       { date: '2024-07-01', content: 'Lorem ipsum dolor sit amet.' },
       { date: '2024-07-01', content: 'vidit suscipit at mei.' },
       { date: '2024-07-01', content: 'Quem denique mea id.' }
     ],
     // Yourself link info
-    applyTip: {
-      name: theme.title,
-      desc: theme.description || 'Null',
-      url: 'https://astro-pure.js.org',
-      avatar: 'https://astro-pure.js.org/favicon/favicon.ico'
-    }
+    applyTip: [
+      { name: 'Name', val: theme.title },
+      { name: 'Desc', val: theme.description || 'Null' },
+      { name: 'Link', val: 'https://astro-pure.js.org/' },
+      { name: 'Avatar', val: 'https://astro-pure.js.org/favicon/favicon.ico' }
+    ]
   },
   // Enable page search function
   pagefind: true,
   // Add a random quote to the footer (default on homepage footer)
+  // See: https://astro-pure.js.org/docs/integrations/advanced#web-content-render
   quote: {
     // https://developer.hitokoto.cn/sentence/#%E8%AF%B7%E6%B1%82%E5%9C%B0%E5%9D%80
     // server: 'https://v1.hitokoto.cn/?c=i',
@@ -105,12 +109,14 @@ export const integ: IntegrationUserConfig = {
     target: `(data) => data[0].content || 'Error'`
   },
   // Tailwindcss typography
+  // See: https://astro-pure.js.org/docs/integrations/others#tailwindcsstypography
   typography: {
     // https://github.com/tailwindlabs/tailwindcss-typography
     class:
       'break-words prose prose-pure dark:prose-invert dark:prose-pure prose-headings:font-medium'
   },
   // A lightbox library that can add zoom effect
+  // See: https://astro-pure.js.org/docs/integrations/others#medium-zoom
   mediumZoom: {
     enable: true, // disable it will not load the whole library
     selector: '.prose .zoomable',

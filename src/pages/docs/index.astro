@@ -1,10 +1,10 @@
 ---
-import { Button, CardList } from 'astro-pure/user'
+import { Button, CardList, Icon } from 'astro-pure/user'
 import { cn } from 'astro-pure/utils'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import { integ } from '@/site-config'
 
-import { docs } from '../../utils/docsContents'
+import { docs } from './docsContents'
 
 const meta = {
   title: 'Docs content',
@@ -29,6 +29,10 @@ const meta = {
           href='https://github.com/cworld1/astro-theme-pure/issues'
           target='_blank'>Github Issues</a
         > for community support.
+      </p>
+      <h2 class='text-xl font-medium'>News Describe (Alpha)</h2>
+      <p>
+        <a href='/docs/rss.xml' target='_blank'><Icon name='rss' /> </a>
       </p>
     </div>
   </main>

@@ -4,7 +4,7 @@ contact_links:
     url: https://t.me/astro_pure
     about: Chat with the community on Telegram
   - name: 📘 Documentation
-    url: https://astro-pure.js.org/docs/list
+    url: https://astro-pure.js.org/docs
     about: Checkout the documentation for more information
   - name: 💁 Discussion
     url: https://github.com/cworld1/astro-theme-pure/discussions

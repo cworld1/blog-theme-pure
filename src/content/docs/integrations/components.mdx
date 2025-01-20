@@ -1,6 +1,4 @@
 ---
-layout: '@/layouts/DocsLayout.astro'
-
 title: 'User Components'
 description: 'Easily extend your content page more interactive'
 ---
@@ -367,7 +365,6 @@ import { Label } from 'astro-pure/user'
 
 ### SVG Loader
 
-
 <MdxRepl>
 import { Svg } from 'astro-pure/user'
 
@@ -427,7 +424,7 @@ import { Icons as allIcons } from 'astro-pure/libs'
     Object.keys(allIcons).map(icon => {
       const script = `navigator.clipboard.writeText('${icon}');document.dispatchEvent(new CustomEvent('toast',{detail:{message:'Copied "${icon}" to clipboard!'}}))`
       return (
-        <Button as='button' type='button' class='cursor-pointer' onClick={script}>
+        <Button as='button' type='button' class='cursor-pointer' onclick={script}>
           <Icon slot='before' name={icon} />
           <span>{icon}</span>
         </Button>

@@ -1,12 +1,12 @@
 ---
 import { Image } from 'astro:assets'
-import { type CollectionKey, type InferEntrySchema } from 'astro:content'
+import type { InferEntrySchema } from 'astro:content'
 
 import { PageInfo } from '.'
 import { FormattedDate, Icon } from '../user'
 
 interface Props {
-  data: InferEntrySchema<CollectionKey>
+  data: InferEntrySchema<'blog'>
   remarkPluginFrontmatter: Record<string, unknown>
 }
 
@@ -38,15 +38,15 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
         class='cover-image relative z-10 h-auto w-full max-w-[65ch] rounded-2xl object-contain'
         fetchpriority='high'
         loading='eager'
-        src={heroImage.src}
+        {...heroImage}
       />
       <Image
         alt='Blur image'
         fetchpriority='high'
         loading='eager'
-        src={heroImage.src}
         id='blurImage'
         class='absolute end-0 top-4 z-0 mt-0 h-full max-w-[65ch] rounded-3xl opacity-60 blur-xl transition-opacity duration-300'
+        {...heroImage}
       />
     </div>
   )

@@ -6,8 +6,8 @@ import { cn, getFormattedDate } from '../../utils'
 import { QRCode } from '../advanced'
 import { Icon } from '../user'
 
-interface Props {
-  data: InferEntrySchema<CollectionKey>
+interface Props<T extends CollectionKey> {
+  data: InferEntrySchema<T>
   class?: string
 }
 
@@ -51,16 +51,18 @@ const shares = {
       <span>Author</span>
       <span class='text-sm text-foreground max-sm:place-self-center'>{config.author}</span>
     </div>
-    <div class='flex gap-x-2 sm:min-w-16 sm:flex-col'>
-      <span>Published at</span>
-      <span class='text-sm text-foreground max-sm:place-self-center'
-        >{
-          getFormattedDate(publishDate, {
-            month: 'long'
-          })
-        }</span
-      >
-    </div>
+    {
+      publishDate && (
+        <div class='flex gap-x-2 sm:min-w-16 sm:flex-col'>
+          <span>Published at</span>
+          <span class='text-sm text-foreground max-sm:place-self-center'>
+            {getFormattedDate(publishDate, {
+              month: 'long'
+            })}
+          </span>
+        </div>
+      )
+    }
     <div class='flex gap-x-2 sm:flex-col'>
       <span>Copyright</span>
       <a

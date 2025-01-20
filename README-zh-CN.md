@@ -12,14 +12,12 @@
 ![image](./.github/assets/header.webp)
 ![image](./.github/assets/body.webp)
 
-> [!CAUTION]
-> 我们目前正在积极开发升级到 Astro v5 和 NPM 包方法。新版本已知问题：
+> [!WARNING]
+> 主题模板 v4.x 是基于Astro v5 以及独立主题 NPM 包方法。更稳定的版本是 [v3.1.4](https://github.com/cworld1/astro-theme-pure/tree/v3.1.4)。已知问题：
 >
 > 1. 无法在 Vercel 上打包站点地图和 pagefind 资源（[需要上游修复](https://github.com/withastro/astro/issues/12663) & 临时修复）
 > 2. Head 标签和自定义选项仍在开发中（已经暴露模板直接改）
 > 3. Rehype 标题链接在 NPM 模块链接方法中无法按预期工作（用户无影响）
->
-> 稳定版本目前为 [v3.1.4](https://github.com/cworld1/astro-theme-pure/tree/v3.1.4)。
 
 ## 简介
 
@@ -52,7 +50,7 @@
 
 ## 文档
 
-[文档](https://astro-pure.js.org/docs/list) | [展示台](https://github.com/cworld1/astro-theme-pure/issues/10)
+[文档](https://astro-pure.js.org/docs) | [展示台](https://github.com/cworld1/astro-theme-pure/issues/10)
 
 ## NPM 包
 

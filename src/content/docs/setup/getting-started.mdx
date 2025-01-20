@@ -1,6 +1,4 @@
 ---
-layout: '@/layouts/DocsLayout.astro'
-
 title: 'Getting Started'
 description: 'Get started with the astro theme pure'
 ---
@@ -145,19 +143,36 @@ The theme file structure is as follows:
    - Remove the menu declaration in `src/site.config.ts`:
    
    ```ts title="src/site.config.ts"
-   // ...
-   {/* export const menuLinks: MenuLinks = [
+   export const theme: ThemeUserConfig = {
       // ...
-      // Docs menu
-      { // [!code --]
-         link: '/docs/list', // [!code --]
-         label: 'Docs' // [!code --]
-      }, // [!code --]
-   ] */}
-   (pendding update...)
+      /** Configure the header of your site. */
+      header: {
+         menu: [
+            { title: 'Blog', link: '/blog' },
+            { title: 'Docs', link: '/docs' }, // [!code --]
+            // ...
+         ],
+      },
+   }
    ```
 
-2. Change the site favicon.
+   - Remove the Content Collection for docs in `src/content.config.ts`:
+
+   ```ts title="src/content.config.ts"
+   const docs = defineCollection({ // [!code --]
+   loader: glob({ base: './src/content/docs', pattern: '**/*.{md,mdx}' }), // [!code --]
+   schema: ({ image }) => // [!code --]
+      z.object({ // [!code --]
+         ... // [!code --]
+      }) // [!code --]
+   }) // [!code --]
+   export const collections = { blog, docs } // [!code --]
+   export const content = { blog } // [!code ++]
+   ```
+
+2. Remove `packages` directory (this will be imported by our NPM package)
+
+3. Change the site favicon.
 
    <Aside type='tip'>
    [Favicon.io](https://favicon.io/) is a great tool that can help you generate favicons quickly.
@@ -165,29 +180,28 @@ The theme file structure is as follows:
 
    Replace the `public/favicon/*` files with your own favicon.
 
-3. Replace your avatar image.
+4. Replace your avatar image.
 
    Replace the `src/assets/avatar.png` file with your own avatar image.
 
-4. Configure the site
+5. Configure the site
 
    You can configure your project inside the `src/site.config.ts` configuration file:
 
    ```ts title="src/site.config.ts"
    export const theme: ThemeUserConfig = {
-      author: 'CWorld / Arthals',
+      author: 'CWorld',
       title: 'Astro Theme Pure',
       site: 'https://astro-pure.js.org',
       description: 'Stay hungry, stay foolish',
       // ...
    }
 
-   export const footerConfig: FooterConfig = { /* ... */ }
    export const integ: IntegrationUserConfig = { /* ... */ }
    // ...
    ```
 
-5. Typescript Syntax
+6. Typescript Syntax
 
    The configuration file `site.config.ts` uses Typescript syntax. If you are not familiar with TS syntax, please read about it [here](https://learnxinyminutes.com/docs/typescript/) first.
 

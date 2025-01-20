@@ -36,7 +36,6 @@ const typographyConfig = ({ theme }) => ({
         margin: '0 auto'
       },
       table: {
-        // display: 'block',
         overflowX: 'scroll'
       },
       blockquote: {

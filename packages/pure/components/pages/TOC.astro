@@ -7,6 +7,7 @@ import TOCHeading from './TOCHeading.astro'
 interface Props {
   headings: MarkdownHeading[]
   class?: string
+  id?: string
 }
 
 const { headings, class: className, ...props } = Astro.props
@@ -14,14 +15,12 @@ const { headings, class: className, ...props } = Astro.props
 const toc = generateToc(headings)
 ---
 
-<aside class={className} id='sidebar' {...props}>
-  <toc-heading>
-    <h2 class='font-semibold'>TABLE OF CONTENTS</h2>
-    <ul class='mt-4 max-h-[70vh] overflow-y-scroll text-card-foreground'>
-      {toc.map((heading) => <TOCHeading heading={heading} />)}
-    </ul>
-  </toc-heading>
-</aside>
+<toc-heading class={className} {...props}>
+  <h2 class='font-semibold'>TABLE OF CONTENTS</h2>
+  <ul class='mt-4 text-card-foreground'>
+    {toc.map((heading) => <TOCHeading heading={heading} />)}
+  </ul>
+</toc-heading>
 
 <script>
   // This script tag is useful only if you want to display the TOC alongside the blog post...

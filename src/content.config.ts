@@ -24,6 +24,10 @@ const blog = defineCollection({
         .object({
           src: image(),
           alt: z.string().optional(),
+          inferSize: z.boolean().optional(),
+          width: z.number().optional(),
+          height: z.number().optional(),
+
           color: z.string().optional()
         })
         .optional(),
@@ -35,4 +39,17 @@ const blog = defineCollection({
     })
 })
 
-export const collections = { blog }
+const docs = defineCollection({
+  loader: glob({ base: './src/content/docs', pattern: '**/*.{md,mdx}' }),
+  schema: () =>
+    z.object({
+      title: z.string().max(60),
+      description: z.string().max(160),
+      publishDate: z.coerce.date().optional(),
+      updatedDate: z.coerce.date().optional(),
+      tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
+      draft: z.boolean().default(false)
+    })
+})
+
+export const collections = { blog, docs }

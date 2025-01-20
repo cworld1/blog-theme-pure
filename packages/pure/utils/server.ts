@@ -12,15 +12,23 @@ export async function getBlogCollection(contentType: CollectionKey = 'blog') {
   })
 }
 
+function getYearFromCollection<T extends CollectionKey>(
+  collection: CollectionEntry<T>
+): number | undefined {
+  const dateStr = collection.data.updatedDate ?? collection.data.publishDate
+  return dateStr ? new Date(dateStr).getFullYear() : undefined
+}
 export function groupCollectionsByYear<T extends CollectionKey>(
   collections: Collections
 ): [number, CollectionEntry<T>[]][] {
   const collectionsByYear = collections.reduce((acc, collection) => {
-    const year = new Date(collection.data.updatedDate ?? collection.data.publishDate).getFullYear()
-    if (!acc.has(year)) {
-      acc.set(year, [])
+    const year = getYearFromCollection(collection)
+    if (year !== undefined) {
+      if (!acc.has(year)) {
+        acc.set(year, [])
+      }
+      acc.get(year)!.push(collection)
     }
-    acc.get(year)!.push(collection)
     return acc
   }, new Map<number, Collections>())
 
@@ -29,10 +37,10 @@ export function groupCollectionsByYear<T extends CollectionKey>(
   ).sort((a, b) => b[0] - a[0])
 }
 
-export function sortMDByDate(collections: Collections) {
+export function sortMDByDate(collections: Collections): Collections {
   return collections.sort((a, b) => {
-    const aDate = new Date(a.data.updatedDate ?? a.data.publishDate).valueOf()
-    const bDate = new Date(b.data.updatedDate ?? b.data.publishDate).valueOf()
+    const aDate = new Date(a.data.updatedDate ?? a.data.publishDate ?? 0).valueOf()
+    const bDate = new Date(b.data.updatedDate ?? b.data.publishDate ?? 0).valueOf()
     return bDate - aDate
   })
 }
